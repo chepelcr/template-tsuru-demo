@@ -3,6 +3,7 @@ import { DynamicIcon } from './DynamicIcon';
 import { ShoppingCart, Heart, Check } from "lucide-react";
 import { useState } from "react";
 import { useCartStore } from "@/store/cart";
+import { useTheme } from "@/hooks/useContent";
 
 interface ProductCardProps {
   id: number;
