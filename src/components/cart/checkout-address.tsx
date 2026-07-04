@@ -155,7 +155,7 @@ export default function CheckoutAddress({
           >
             <SelectTrigger id="provincia">
               <SelectValue
-                placeholder={statesLoading ? "Cargando..." : "Selecciona provincia"}
+                placeholder={statesLoading ? "Kanè tso'..." : "Yulö̀: Provincia"}
               />
             </SelectTrigger>
             <SelectContent>
@@ -176,7 +176,7 @@ export default function CheckoutAddress({
           >
             <SelectTrigger id="canton">
               <SelectValue
-                placeholder={countiesLoading ? "Cargando..." : "Selecciona cantón"}
+                placeholder={countiesLoading ? "Kanè tso'..." : "Yulö̀: Cantón"}
               />
             </SelectTrigger>
             <SelectContent>
@@ -199,7 +199,7 @@ export default function CheckoutAddress({
           >
             <SelectTrigger id="distrito">
               <SelectValue
-                placeholder={districtsLoading ? "Cargando..." : "Selecciona distrito"}
+                placeholder={districtsLoading ? "Kanè tso'..." : "Yulö̀: Distrito"}
               />
             </SelectTrigger>
             <SelectContent>
@@ -220,7 +220,7 @@ export default function CheckoutAddress({
           >
             <SelectTrigger id="barrio">
               <SelectValue
-                placeholder={nbLoading ? "Cargando..." : "Selecciona barrio"}
+                placeholder={nbLoading ? "Kanè tso'..." : "Yulö̀: Barrio"}
               />
             </SelectTrigger>
             <SelectContent>
@@ -237,12 +237,12 @@ export default function CheckoutAddress({
         </div>
       </div>
       <div>
-        <Label htmlFor="address">Dirección Exacta</Label>
+        <Label htmlFor="address">Be' ù wé̱</Label>
         <Textarea
           id="address"
           value={value.address}
           onChange={(e) => onChange({ ...value, address: e.target.value })}
-          placeholder="Otras señas (100m sur de..., casa color...)"
+          placeholder="Be' ù pàke (100m sur de..., ù kolòr...)"
           rows={3}
           required
         />

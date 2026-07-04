@@ -13,23 +13,23 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-gradient">{organization?.name || 'JMarkets Demo'}</h3>
+            <h3 className="text-xl font-bold mb-4 text-gradient">{organization?.name || 'Tsuru Ù'}</h3>
             <p className="text-gray-400 mb-4">
-              Your trusted marketplace for quality products. Discover amazing deals and shop with confidence.
+              Tsuru' dör sa' ìyök wö̀. Ìyi bua'ë, ulà wa yö̀ne, sa' ditsö̀ wa.
             </p>
             <div className="flex gap-3">
               {contact?.facebookUrl && (
-                <a href={contact.facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                <a href={contact.facebookUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-accent/90 rounded-full flex items-center justify-center transition-colors">
                   <Facebook className="w-5 h-5" />
                 </a>
               )}
               {contact?.twitterUrl && (
-                <a href={contact.twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                <a href={contact.twitterUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-accent/90 rounded-full flex items-center justify-center transition-colors">
                   <Twitter className="w-5 h-5" />
                 </a>
               )}
               {contact?.instagramUrl && (
-                <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                <a href={contact.instagramUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 hover:bg-accent/90 rounded-full flex items-center justify-center transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
               )}
@@ -38,31 +38,31 @@ export default function Footer() {
 
           {/* Shop Links */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Shop</h4>
+            <h4 className="font-semibold mb-4 text-lg">Ìyi</h4>
             <ul className="space-y-3 text-gray-400">
               <li>
                 <Link href="/products">
-                  <a className="hover:text-primary transition-colors">All Products</a>
+                  <a className="hover:text-primary transition-colors">Ìyi ulìtane</a>
                 </Link>
               </li>
               <li>
                 <Link href="/products">
-                  <a className="hover:text-primary transition-colors">Categories</a>
+                  <a className="hover:text-primary transition-colors">Ìyi kie</a>
                 </Link>
               </li>
               <li>
                 <Link href="/products">
-                  <a className="hover:text-primary transition-colors">Deals & Offers</a>
+                  <a className="hover:text-primary transition-colors">Ìyi bua'ë</a>
                 </Link>
               </li>
               <li>
                 <Link href="/products">
-                  <a className="hover:text-primary transition-colors">New Arrivals</a>
+                  <a className="hover:text-primary transition-colors">Ìyi pà</a>
                 </Link>
               </li>
               <li>
                 <Link href="/products">
-                  <a className="hover:text-primary transition-colors">Bestsellers</a>
+                  <a className="hover:text-primary transition-colors">Ìyi sú̱ne bua'ë</a>
                 </Link>
               </li>
             </ul>
@@ -70,31 +70,31 @@ export default function Footer() {
 
           {/* Support Links */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Support</h4>
+            <h4 className="font-semibold mb-4 text-lg">Kimà</h4>
             <ul className="space-y-3 text-gray-400">
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Contáctanos
+                  Sa' ta̱ ushtè
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  FAQ
+                  Ichàkök
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Shipping Info
+                  Ìyi patkè pàke
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Returns & Refunds
+                  Ìyi tulè pàke
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-primary transition-colors">
-                  Order Tracking
+                  Be' ìyi sú̱
                 </a>
               </li>
             </ul>
@@ -102,7 +102,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Contact</h4>
+            <h4 className="font-semibold mb-4 text-lg">Ushtè</h4>
             <ul className="space-y-3 text-gray-400">
               {contact?.address && (
                 <li className="flex items-start gap-3">
@@ -113,7 +113,7 @@ export default function Footer() {
               {contact?.phone && (
                 <li className="flex items-center gap-3">
                   <MessageCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <a href={`https://wa.me/${contact.whatsappNumber?.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Hola, me gustaría obtener más información")}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{contact.phone}</a>
+                  <a href={`https://wa.me/${contact.whatsappNumber?.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Ìs be' shkèna, ye' ki̱ ìyi pàke kiàne")}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{contact.phone}</a>
                 </li>
               )}
               {contact?.email && (
@@ -132,17 +132,17 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              &copy; 2026 {organization?.name || 'JMarkets Demo'}. All rights reserved.
+              &copy; 2026 {organization?.name || 'Tsuru Ù'}. Ulìtane sa' cha.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="#" className="hover:text-primary transition-colors">
-                Política de Privacidad
+                Pribasidà
               </a>
               <a href="#" className="hover:text-primary transition-colors">
-                Terms of Service
+                Kanè yëjkuö
               </a>
               <a href="#" className="hover:text-primary transition-colors">
-                Cookie Policy
+                Cookies
               </a>
             </div>
           </div>

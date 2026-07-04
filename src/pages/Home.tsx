@@ -27,19 +27,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              {hero.title || 'Your Marketplace for Everything'}
+              {hero.title || "Tsuru': sa' ìyök wö̀"}
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              {hero.subtitle || 'Discover amazing products from trusted sellers worldwide'}
+              {hero.subtitle || "Ìyi bua'ë sa' ìyök wa, sa' ditsö̀ wa yö̀ne"}
             </p>
             <div className="flex justify-center gap-4">
               <Link href="/products">
-                <a className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3 rounded-md font-semibold text-lg transition-colors shadow-lg">
-                  {hero.ctaPrimary || 'Shop Now'}
+                <a className="bg-white text-accent hover:bg-gray-100 px-8 py-3 rounded-md font-semibold text-lg transition-colors shadow-lg">
+                  {hero.ctaPrimary || 'Ìyi sú̱'}
                 </a>
               </Link>
-              <button className="bg-blue-900 hover:bg-blue-950 px-8 py-3 rounded-md font-semibold text-lg transition-colors shadow-lg">
-                {hero.ctaSecondary || 'Learn More'}
+              <button className="bg-secondary hover:bg-secondary/90 px-8 py-3 rounded-md font-semibold text-lg transition-colors shadow-lg">
+                {hero.ctaSecondary || "Sa' pàke sú̱"}
               </button>
             </div>
           </div>
@@ -51,19 +51,19 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Shop With Us?
+              Ìs sa' kanè?
             </h2>
             <p className="text-lg text-muted-foreground">
-              The best shopping experience, guaranteed
+              Ìyi bua'ë, ulà wa yö̀ne, feria ki̱
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(benefits.items || [{icon: 'Zap', title: 'Fast Delivery', description: 'Get your orders delivered quickly and reliably'}, {icon: 'Shield', title: 'Secure Payments', description: 'Shop with confidence using our secure checkout'}, {icon: 'ShoppingCart', title: 'Easy Returns', description: 'Hassle-free returns within 30 days'}, {icon: 'TruckIcon', title: 'Free Shipping', description: 'On orders over $50'}]).map((benefit: any, index: number) => {
+            {(benefits.items || [{icon: 'Zap', title: 'Ìyök ìyi', description: "Ìyi yö̀ne sa' ìyök wa"}, {icon: 'Shield', title: "Sa' ditsö̀", description: "Kanè yö̀ne sa' ditsö̀ ta̱"}, {icon: 'ShoppingCart', title: "Tsuru' pàke", description: "Tsuru' dör sa' pàke kèkla"}, {icon: 'TruckIcon', title: 'Feria ki̱', description: "Ìyi mì be' a̱ feria wa"}]).map((benefit: any, index: number) => {
               const iconMap: any = { Zap, Shield, ShoppingCart, TruckIcon };
               const Icon = iconMap[benefit.icon] || Zap;
               return (
                 <div key={index} className="card-modern p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-orange-100 text-orange-600 rounded-full mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-accent/10 text-accent rounded-full mb-4">
                     <Icon className="w-8 h-8" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
@@ -80,10 +80,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Shop by Category
+              Ìyi kie sú̱
             </h2>
             <p className="text-lg text-muted-foreground">
-              Find exactly what you're looking for
+              Be' ìyi yulè kú̱ í̱e̱
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -101,10 +101,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Productos Destacados
+              Ìyi bua'ë
             </h2>
             <p className="text-lg text-muted-foreground">
-              Handpicked favorites just for you
+              Ìyi yulène bua'ë be' a̱
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -117,7 +117,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link href="/products">
               <a className="btn-primary px-8 py-3 rounded-md font-semibold text-lg inline-block shadow-orange">
-                Ver Todos los Productos
+                Ìyi ulìtane sú̱
               </a>
             </Link>
           </div>
@@ -128,14 +128,14 @@ export default function Home() {
       <section className="bg-secondary py-16 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            {cta.title || 'Ready to Start Shopping?'}
+            {cta.title || "Sa' ta̱ shkö̀?"}
           </h2>
           <p className="text-xl mb-8 text-white/90">
-            {cta.description || 'Join thousands of happy customers and discover amazing deals today'}
+            {cta.description || "Feria ki̱ mì sa' ta̱ — ìyi bua'ë tso' be' a̱"}
           </p>
           <Link href="/products">
-            <a className="bg-primary hover:bg-orange-600 px-8 py-3 rounded-md font-semibold text-lg inline-block transition-colors shadow-lg">
-              {cta.buttonText || 'Browse Products'}
+            <a className="bg-primary hover:bg-accent/90 px-8 py-3 rounded-md font-semibold text-lg inline-block transition-colors shadow-lg">
+              {cta.buttonText || 'Ìyi sú̱'}
             </a>
           </Link>
         </div>

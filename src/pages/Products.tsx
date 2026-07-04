@@ -30,8 +30,8 @@ export default function Products() {
       {/* Page Header */}
       <div className="bg-gradient-orange py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{hero?.title || 'Nuestros Productos'}</h1>
-          <p className="text-xl text-white/90">{hero?.subtitle || 'Descubre nuestra colección completa'}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{hero?.title || "Sa' ìyi"}</h1>
+          <p className="text-xl text-white/90">{hero?.subtitle || "Ìyi ulìtane sú̱ í̱e̱"}</p>
         </div>
       </div>
 
@@ -49,9 +49,9 @@ export default function Products() {
               <div className="mb-6">
                 <h3 className="font-semibold mb-3">Categorías</h3>
                 <div className="space-y-2">
-                  {['Todos los Productos', 'Electrónicos', 'Moda', 'Hogar y Jardín', 'Deportes'].map((cat) => (
+                  {["Ìyi ulìtane", "Tsuru'", "Ulà kanè", "Kàl wö̀", "Kapë̀"].map((cat) => (
                     <label key={cat} className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                      <input type="checkbox" className="rounded border-border" defaultChecked={cat === 'Todos los Productos'} />
+                      <input type="checkbox" className="rounded border-border" defaultChecked={cat === "Ìyi ulìtane"} />
                       <span>{cat}</span>
                     </label>
                   ))}
@@ -90,7 +90,7 @@ export default function Products() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Buscar productos..."
+                  placeholder="Ìyi yulö̀..."
                   className="w-full pl-10 pr-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
@@ -132,9 +132,9 @@ export default function Products() {
       <section className="bg-muted py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">{cta?.title || '¿No Encuentras Lo Que Buscas?'}</h2>
-          <p className="text-muted-foreground mb-6">{cta?.description || 'Contáctanos para recomendaciones personalizadas'}</p>
+          <p className="text-muted-foreground mb-6">{cta?.description || "Sa' ta̱ ushtè — sa' te ìyi pàke be' a̱"}</p>
           <a href="#contact" className="btn-primary px-8 py-3 rounded-md font-medium">
-            {cta?.buttonText || 'Contáctanos'}
+            {cta?.buttonText || "Sa' ta̱ ushtè"}
           </a>
         </div>
       </section>

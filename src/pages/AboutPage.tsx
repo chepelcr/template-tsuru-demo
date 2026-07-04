@@ -31,19 +31,19 @@ export default function AboutPage() {
 
       <section className="bg-gradient-orange-blue py-20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">{hero?.title || 'About Us'}</h1>
-          <p className="text-xl text-white/90">{hero?.subtitle || 'Your trusted marketplace since 2020'}</p>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">{hero?.title || "Sa' pàke"}</h1>
+          <p className="text-xl text-white/90">{hero?.subtitle || "Sa' feria, sa' ditsö̀, sa' ìyök"}</p>
         </div>
       </section>
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-4">{story?.title || 'Our Story'}</h2>
+          <h2 className="text-3xl font-bold mb-4">{story?.title || "Sa' pàke"}</h2>
           <p className="text-muted-foreground mb-6 text-lg">
-            {story?.content || 'We were founded to connect buyers and sellers in a trusted, easy-to-use marketplace.'}
+            {story?.content || "Tsuru' dör tsuru' kie bribri wa — Costa Rica ño̱là kèkla. Sa' te ditsö̀ ta̱ feria wè̱ke ñá̱ ulà ki̱."}
           </p>
 
-          <h2 className="text-3xl font-bold mb-6 mt-12">{values?.title || 'Why Choose Us'}</h2>
+          <h2 className="text-3xl font-bold mb-6 mt-12">{values?.title || "Ìs sa' kanè"}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {(values?.items || []).map((item: any, idx: number) => {
               const Icon = iconMap[item.icon] || Users;

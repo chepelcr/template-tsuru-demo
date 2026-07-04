@@ -61,7 +61,7 @@ export default function CategoryCard({
           )}
 
           <div className="mt-4 flex items-center text-primary font-semibold text-sm">
-            <span>Shop Now</span>
+            <span>Ìyi sú̱</span>
             <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>

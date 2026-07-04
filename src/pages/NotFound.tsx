@@ -20,10 +20,10 @@ export default function NotFound() {
 
           {/* Error Message */}
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Oops! Page Not Found
+            Kë̀ kú̱ne!
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-            The page you're looking for doesn't exist or has been moved. Let's get you back on track!
+            Ì be' yulè kë̀ tso' í̱e̱. Bö̀ ù ki̱!
           </p>
 
           {/* Action Buttons */}
@@ -31,25 +31,25 @@ export default function NotFound() {
             <Link href="/">
               <a className="btn-primary px-8 py-3 rounded-md font-semibold text-lg inline-flex items-center justify-center gap-2 shadow-orange">
                 <Home className="w-5 h-5" />
-                Back to Home
+                Ù ki̱ bö̀
               </a>
             </Link>
             <Link href="/products">
               <a className="btn-secondary px-8 py-3 rounded-md font-semibold text-lg inline-flex items-center justify-center gap-2">
                 <Search className="w-5 h-5" />
-                Browse Products
+                Ìyi sú̱
               </a>
             </Link>
           </div>
 
           {/* Helpful Links */}
           <div className="card-modern p-6 max-w-md mx-auto">
-            <h3 className="font-semibold text-lg mb-4">Helpful Links</h3>
+            <h3 className="font-semibold text-lg mb-4">Ñá̱la̱ kimà</h3>
             <div className="space-y-3 text-left">
               <Link href="/products">
                 <a className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group">
                   <span className="text-muted-foreground group-hover:text-primary">
-                    Shop All Products
+                    Ìyi ulìtane sú̱
                   </span>
                   <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
                 </a>
@@ -59,7 +59,7 @@ export default function NotFound() {
                 className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group"
               >
                 <span className="text-muted-foreground group-hover:text-primary">
-                  Contact Support
+                  Sa' ta̱ ushtè
                 </span>
                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
               </a>
@@ -68,7 +68,7 @@ export default function NotFound() {
                 className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group"
               >
                 <span className="text-muted-foreground group-hover:text-primary">
-                  Help Center
+                  Kimà ù
                 </span>
                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
               </a>
@@ -77,9 +77,9 @@ export default function NotFound() {
 
           {/* Decorative Element */}
           <div className="mt-12 flex justify-center gap-2">
-            <div className="w-3 h-3 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-            <div className="w-3 h-3 bg-orange-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-3 h-3 bg-blue-800 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
+            <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-3 h-3 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
           </div>
         </div>
       </div>

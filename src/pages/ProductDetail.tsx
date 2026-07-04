@@ -11,7 +11,7 @@ export default function ProductDetail() {
   const relatedProducts = Array.from({ length: 4 }, (_, i) => ({
     id: i + 10,
     name: `Related Product ${i + 1}`,
-    category: ['Electronics', 'Fashion', 'Home & Garden', 'Sports'][i % 4],
+    category: ["Tsuru'", "Ulà kanè", "Kàl wö̀", "Kapë̀"][i % 4],
     price: 79.99 - (i * 5),
     originalPrice: 99.99,
     badge: (i % 3 === 0 ? 'Sale' : i % 3 === 1 ? 'New' : 'Bestseller') as 'Sale' | 'New' | 'Bestseller',
@@ -30,7 +30,7 @@ export default function ProductDetail() {
             </Link>
             <span>/</span>
             <Link href="/products">
-              <a className="hover:text-primary">Products</a>
+              <a className="hover:text-primary">Ìyi</a>
             </Link>
             <span>/</span>
             <span className="text-foreground">Product {productId}</span>
@@ -54,7 +54,7 @@ export default function ProductDetail() {
           {/* Product Info */}
           <div>
             <div className="mb-4">
-              <span className="badge-bestseller">Bestseller</span>
+              <span className="badge-bestseller">Bua'ë</span>
             </div>
             <h1 className="text-4xl font-bold text-foreground mb-2">
               Amazing Product {productId}
@@ -98,9 +98,9 @@ export default function ProductDetail() {
             </div>
 
             <div className="mb-6">
-              <h3 className="font-semibold mb-3">Color</h3>
+              <h3 className="font-semibold mb-3">Kolòr</h3>
               <div className="flex gap-2">
-                {['bg-orange-500', 'bg-blue-800', 'bg-amber-400', 'bg-gray-800'].map((color, i) => (
+                {['bg-accent', 'bg-secondary', 'bg-amber-400', 'bg-gray-800'].map((color, i) => (
                   <button
                     key={i}
                     className={`w-10 h-10 ${color} rounded-full border-2 border-gray-300 hover:border-foreground transition-colors`}
@@ -109,7 +109,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Quantity and Add to Cart */}
+            {/* Quantity and Kö̀l ki̱ */}
             <div className="flex gap-4 mb-8">
               <div className="flex items-center border border-border rounded-md">
                 <button className="px-4 py-2 hover:bg-muted transition-colors">-</button>
@@ -118,7 +118,7 @@ export default function ProductDetail() {
               </div>
               <button className="btn-primary flex-1 py-3 rounded-md font-semibold flex items-center justify-center gap-2 shadow-orange">
                 <ShoppingCart className="w-5 h-5" />
-                Add to Cart
+                Kö̀l ki̱
               </button>
             </div>
 
@@ -126,7 +126,7 @@ export default function ProductDetail() {
             <div className="flex gap-3 mb-8">
               <button className="flex-1 btn-secondary py-3 rounded-md font-medium flex items-center justify-center gap-2">
                 <Heart className="w-5 h-5" />
-                Add to Wishlist
+                Ye' ki̱ ìyi kiàne
               </button>
               <button className="px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors">
                 <Share2 className="w-5 h-5" />
@@ -137,15 +137,15 @@ export default function ProductDetail() {
             <div className="grid grid-cols-3 gap-4 p-6 bg-muted rounded-lg">
               <div className="text-center">
                 <Truck className="w-8 h-8 text-primary mx-auto mb-2" />
-                <p className="text-sm font-medium">Free Shipping</p>
+                <p className="text-sm font-medium">Ìyi patkè</p>
               </div>
               <div className="text-center">
                 <Shield className="w-8 h-8 text-secondary mx-auto mb-2" />
-                <p className="text-sm font-medium">Secure Payment</p>
+                <p className="text-sm font-medium">Wablö̀ bua'ë</p>
               </div>
               <div className="text-center">
                 <RotateCcw className="w-8 h-8 text-accent mx-auto mb-2" />
-                <p className="text-sm font-medium">Easy Returns</p>
+                <p className="text-sm font-medium">Ìyi tulè</p>
               </div>
             </div>
           </div>
@@ -153,27 +153,27 @@ export default function ProductDetail() {
 
         {/* Product Description */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-6">Product Description</h2>
+          <h2 className="text-3xl font-bold mb-6">Ìyi pàke</h2>
           <div className="prose max-w-none">
             <p className="text-muted-foreground mb-4">
               Discover the perfect blend of style and functionality with this exceptional product.
               Crafted with premium materials and designed with your needs in mind, it delivers
               outstanding performance in every situation.
             </p>
-            <h3 className="text-xl font-semibold mt-6 mb-3">Key Features:</h3>
+            <h3 className="text-xl font-semibold mt-6 mb-3">Ìyi pàke:</h3>
             <ul className="list-disc list-inside text-muted-foreground space-y-2">
-              <li>Premium quality construction for long-lasting durability</li>
-              <li>Modern design that fits any style</li>
-              <li>Easy to use and maintain</li>
-              <li>Eco-friendly materials</li>
-              <li>Backed by our satisfaction guarantee</li>
+              <li>Yö̀ne bua'ë, ulà wa</li>
+              <li>Ìyi bua'ë sú̱ne</li>
+              <li>Bua'ë se' a̱</li>
+              <li>Ìyök ìyi wa yö̀ne</li>
+              <li>Sa' te be' kimè</li>
             </ul>
           </div>
         </div>
 
         {/* Related Products */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-8">You May Also Like</h2>
+          <h2 className="text-3xl font-bold mb-8">Ìyi wèst sú̱</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.map((product) => (
               <ProductCard key={product.id} {...product} />

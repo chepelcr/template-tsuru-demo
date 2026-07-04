@@ -20,7 +20,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/">
               <a className="text-2xl font-bold text-gradient" onClick={() => window.scrollTo(0, 0)}>
-                {organization?.name || 'JMarkets Demo'}
+                {organization?.name || 'Tsuru Ù'}
               </a>
             </Link>
           </div>
@@ -28,21 +28,17 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/">
-              <a className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => window.scrollTo(0, 0)}>
-                Inicio
-              </a>
+              <a className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => window.scrollTo(0, 0)}>Ù</a>
             </Link>
             <Link href="/products">
-              <a className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => window.scrollTo(0, 0)}>
-                Productos
-              </a>
+              <a className="text-foreground hover:text-primary transition-colors font-medium" onClick={() => window.scrollTo(0, 0)}>Ìyi</a>
             </Link>
             <button
               onClick={toggleCart}
               className="text-foreground hover:text-primary transition-colors font-medium flex items-center gap-2 relative"
             >
               <ShoppingCart className="w-5 h-5" />
-              <span>Carrito</span>
+              <span>Kö̀l</span>
               {cartItemCount > 0 && (
                 <span className="bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {cartItemCount}
@@ -79,17 +75,13 @@ export default function Navbar() {
                 <a
                   className="text-foreground hover:text-primary transition-colors font-medium py-2"
                   onClick={() => setMobileMenuOpen(false)}
-                >
-                  Inicio
-                </a>
+                >Ù</a>
               </Link>
               <Link href="/products">
                 <a
                   className="text-foreground hover:text-primary transition-colors font-medium py-2"
                   onClick={() => setMobileMenuOpen(false)}
-                >
-                  Productos
-                </a>
+                >Ìyi</a>
               </Link>
               <button
                 onClick={() => {
@@ -99,7 +91,7 @@ export default function Navbar() {
                 className="text-foreground hover:text-primary transition-colors font-medium flex items-center gap-2 py-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-                <span>Carrito {cartItemCount > 0 ? `(${cartItemCount})` : ''}</span>
+                <span>Kö̀l {cartItemCount > 0 ? `(${cartItemCount})` : ''}</span>
               </button>
             </div>
           </div>

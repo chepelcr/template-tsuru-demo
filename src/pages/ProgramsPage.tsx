@@ -15,10 +15,10 @@ export default function ProgramsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full mb-4">
             <BookOpen className="w-5 h-5" />
-            <span className="font-semibold">Learning Programs</span>
+            <span className="font-semibold">Kanè yëjkuö</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Programs</h1>
-          <p className="text-xl text-white/90">Structured learning paths for success</p>
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">Kanè yëjkuö</h1>
+          <p className="text-xl text-white/90">Ñè̱ke sa' ta̱, kanè yëjkuö wa</p>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ export default function ProgramsPage() {
                   </div>
                   <div className="flex items-center justify-between pt-4 border-t">
                     <span className="text-2xl font-bold text-primary">${program.price}</span>
-                    <button className="btn-primary px-6 py-2 rounded-md font-semibold shadow-orange">Inscribirse</button>
+                    <button className="btn-primary px-6 py-2 rounded-md font-semibold shadow-orange">Ye' kie yö́</button>
                   </div>
                 </div>
               ))
@@ -64,8 +64,8 @@ export default function ProgramsPage() {
           {!isLoading && programs.length === 0 && (
             <div className="text-center py-16">
               <BookOpen className="w-16 h-16 text-primary mx-auto mb-4 opacity-50" />
-              <h3 className="text-2xl font-bold mb-2">No programas disponibles</h3>
-              <Link href="/products"><a className="btn-primary px-8 py-3 rounded-md font-semibold shadow-orange">Ver Productos</a></Link>
+              <h3 className="text-2xl font-bold mb-2">Kanè yëjkuö kë̀ tso' ì̱a̱</h3>
+              <Link href="/products"><a className="btn-primary px-8 py-3 rounded-md font-semibold shadow-orange">Ìyi sú̱</a></Link>
             </div>
           )}
         </div>

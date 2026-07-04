@@ -57,7 +57,7 @@ export default function ProductCard({
                   <div className="w-20 h-20 mx-auto mb-2 rounded-full bg-white/50 flex items-center justify-center">
                     <DynamicIcon icon={theme?.productFallbackIcon} fallback="Sparkles" className="w-12 h-12 text-primary/40" size={48} />
                   </div>
-                  <span className="text-xs text-foreground/40">Producto sin imagen</span>
+                  <span className="text-xs text-foreground/40">Ìyi kë̀ sú̱ne</span>
                 </div>
               </div>
             )}
@@ -65,15 +65,15 @@ export default function ProductCard({
             {/* Badge */}
             {badge && (
               <div className="absolute top-3 right-3">
-                {badge === 'Sale' && <span className="badge-sale">Sale</span>}
+                {badge === 'Sale' && <span className="badge-sale">Ìyi bua'ë</span>}
                 {badge === 'New' && <span className="badge-new">New</span>}
-                {badge === 'Bestseller' && <span className="badge-bestseller">Bestseller</span>}
+                {badge === 'Bestseller' && <span className="badge-bestseller">Bua'ë</span>}
               </div>
             )}
 
             {/* Wishlist Button */}
             <button
-              className="absolute top-3 left-3 w-9 h-9 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-orange-50"
+              className="absolute top-3 left-3 w-9 h-9 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-muted"
               onClick={(e) => {
                 e.preventDefault();
                 // Add to wishlist logic here
@@ -110,7 +110,7 @@ export default function ProductCard({
                 className={`p-2.5 rounded-md transition-all shadow-orange ${
                   isAdding
                     ? 'bg-green-500 text-white'
-                    : 'bg-primary hover:bg-orange-600 text-white'
+                    : 'bg-primary hover:bg-accent/90 text-white'
                 }`}
                 onClick={handleAddToCart}
               >
