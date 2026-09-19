@@ -39,14 +39,14 @@ npm run preview
 
 ## Build Output
 
-Builds to: `dist/templates/jmarkets-demo/`
+Builds to: `dist/` (repo-local, per `vite.config.ts`).
 
 ## Deployment
 
-This template is designed to be deployed to:
-- **Live URL**: https://jmarkets-demo-example.j-markets.jcampos.dev
-- **S3 Bucket**: jmarkets-demo-example
-- **CloudFront**: With wildcard SSL certificate
+GitHub Pages, from `.github/workflows/deploy.yml` on push to `main`:
+- **Live URL**: https://tsuru-demo.examples.tsuru.jcampos.dev
+- The S3 + CloudFront path this section used to describe is retired, along with
+  the `jmarkets-demo` name (renamed `tsuru-demo` on 2026-07-03).
 
 ## Architecture
 
