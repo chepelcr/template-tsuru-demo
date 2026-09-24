@@ -20,7 +20,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/">
               <a className="text-2xl font-bold text-gradient" onClick={() => window.scrollTo(0, 0)}>
-                {organization?.name || 'Tsuru Ù'}
+                {organization?.name}
               </a>
             </Link>
           </div>

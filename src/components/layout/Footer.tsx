@@ -1,10 +1,12 @@
 import { Link } from "wouter";
 import { useSubdomainContext } from '@/contexts/SubdomainContext';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, MessageCircle, MapPin } from "lucide-react";
+import { formatPhone, whatsappPhone, whatsappUrl } from "@chepelcr/tsuru-storefront-sdk";
 import { useContact } from "@/hooks/useContent";
 
 export default function Footer() {
   const { data: contact } = useContact();
+  const storeWhatsapp = whatsappPhone(contact);
   const { organization } = useSubdomainContext();
   return (
     <footer className="bg-gray-900 text-white">
@@ -13,7 +15,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-gradient">{organization?.name || 'Tsuru Ù'}</h3>
+            <h3 className="text-xl font-bold mb-4 text-gradient">{organization?.name}</h3>
             <p className="text-gray-400 mb-4">
               Tsuru' dör sa' ìyök wö̀. Ìyi bua'ë, ulà wa yö̀ne, sa' ditsö̀ wa.
             </p>
@@ -110,10 +112,10 @@ export default function Footer() {
                   <span>{contact.address}</span>
                 </li>
               )}
-              {contact?.phone && (
+              {storeWhatsapp && (
                 <li className="flex items-center gap-3">
                   <MessageCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <a href={`https://wa.me/${contact.whatsappNumber?.replace(/[^0-9]/g, "")}?text=${encodeURIComponent("Ìs be' shkèna, ye' ki̱ ìyi pàke kiàne")}`} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{contact.phone}</a>
+                  <a href={whatsappUrl(storeWhatsapp, "Ìs be' shkèna, ye' ki̱ ìyi pàke kiàne")} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{formatPhone(storeWhatsapp)}</a>
                 </li>
               )}
               {contact?.email && (
@@ -132,7 +134,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              &copy; 2026 {organization?.name || 'Tsuru Ù'}. Ulìtane sa' cha.
+              &copy; 2026 {organization?.name}. Ulìtane sa' cha.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
               <a href="#" className="hover:text-primary transition-colors">
