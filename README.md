@@ -1,4 +1,4 @@
-# JMarkets Demo Template
+# Tsuru Demo Template
 
 A modern, general marketplace template with an orange and blue color scheme.
 
@@ -46,7 +46,7 @@ Builds to: `dist/` (repo-local, per `vite.config.ts`).
 GitHub Pages, from `.github/workflows/deploy.yml` on push to `main`:
 - **Live URL**: https://tsuru-demo.examples.tsuru.jcampos.dev
 - The S3 + CloudFront path this section used to describe is retired, along with
-  the `jmarkets-demo` name (renamed `tsuru-demo` on 2026-07-03).
+  the `tsuru-demo` name (renamed `tsuru-demo` on 2026-07-03).
 
 ## Architecture
 

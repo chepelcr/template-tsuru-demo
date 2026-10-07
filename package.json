@@ -2,7 +2,7 @@
   "name": "tsuru-demo",
   "version": "1.0.0",
   "type": "module",
-  "description": "JMarkets Demo - General Marketplace Template",
+  "description": "Tsuru Demo - General Marketplace Template",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

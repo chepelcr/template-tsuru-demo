@@ -112,7 +112,7 @@
 }
 
 @layer components {
-  /* JMarkets Demo specific component styles */
+  /* Tsuru Demo specific component styles */
   .btn-primary {
     @apply bg-primary text-primary-foreground hover:bg-orange-600 transition-colors;
   }

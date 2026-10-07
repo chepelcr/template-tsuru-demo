@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // JMarkets Demo Theme - Orange & Blue
+        // Tsuru Demo Theme - Orange & Blue
         // Primary: Orange #f97316, Secondary: Blue #1e40af, Accent: Amber #fbbf24
 
         // Semantic color tokens referenced from CSS variables

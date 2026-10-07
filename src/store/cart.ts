@@ -111,7 +111,7 @@ export const useCartStore = create<CartState>()(
       },
     }),
     {
-      name: "jmarkets-cart-storage",
+      name: "tsuru-cart-storage",
       partialize: (state) => ({ items: state.items, total: state.total }),
     }
   )
