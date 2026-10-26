@@ -1,129 +1,94 @@
-import { Link } from "wouter";
-import { DynamicIcon } from './DynamicIcon';
-import { ShoppingCart, Heart, Check } from "lucide-react";
-import { useState } from "react";
-import { useCartStore } from "@/store/cart";
-import { useTheme } from "@/hooks/useContent";
+import { Link } from 'wouter';
+import type { CatalogCategory, CatalogItem } from '@/core';
+import { useI18n } from '@/i18n';
+import { AddToCart } from './AddToCart';
+import { Availability } from './Availability';
+import { Placeholder } from './Placeholder';
+import { Price } from './Price';
+import { StoreImage } from './StoreImage';
 
 interface ProductCardProps {
-  id: number;
-  name: string;
-  category?: string;
-  price: number;
-  originalPrice?: number;
-  badge?: 'Sale' | 'New' | 'Bestseller';
-  imageUrl?: string;
+  item: CatalogItem;
+  category?: CatalogCategory;
+  /** Rendered width for image selection. */
+  sizes?: string;
+  layout?: 'stack' | 'feature' | 'row';
+  headingLevel?: 'h2' | 'h3';
 }
 
-export default function ProductCard({
-  id,
-  name,
-  category,
-  price,
-  originalPrice,
-  badge,
-  imageUrl,
-}: ProductCardProps) {
-  const { addToCart } = useCartStore();
-  const { data: theme } = useTheme();
-  const [isAdding, setIsAdding] = useState(false);
+/**
+ * A product or service in a leaf-shaped frame. The name links to the detail
+ * page; the add button is a separate control (never nested in the link).
+ */
+export function ProductCard({ item, category, sizes = '(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw', layout = 'stack', headingLevel = 'h3' }: ProductCardProps) {
+  const { t } = useI18n();
+  const Heading = headingLevel;
+  const feature = layout === 'feature';
 
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    addToCart({
-      id: id.toString(),
-      name,
-      price,
-      imageUrl: imageUrl || null
-    });
-    setIsAdding(true);
-    setTimeout(() => setIsAdding(false), 1500);
-  };
+  if (layout === 'row') {
+    return (
+      <article className="group relative flex gap-4 rounded-[1.25rem_0.375rem_1.25rem_0.375rem] has-[a:focus-visible]:outline has-[a:focus-visible]:outline-[3px] has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-[color:var(--focus)] sm:gap-5">
+        <div className="leaf-sm relative aspect-square w-28 shrink-0 bg-surface-quiet sm:w-36">
+          <StoreImage src={item.imageUrl} alt="" sizes="9rem" maxWidth={400} fallback={<Placeholder />} />
+        </div>
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5 py-1">
+          {category && <p className="text-sm font-medium text-ink-soft">{category.name}</p>}
+          <Heading className="text-xl leading-tight text-heading">
+            <Link href={`/products/${item.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none group-hover:underline">
+              {item.name}
+            </Link>
+          </Heading>
+          <Price item={item} />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <Availability item={item} />
+          </div>
+          <div className="relative z-10 mt-auto pt-1">
+            <AddToCart item={item} variant="compact" />
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   return (
-    <div className="product-card group relative">
-      <Link href={`/products/${id}`}>
-        <a className="block">
-          {/* Product Image */}
-          <div className="aspect-square bg-gradient-to-br from-orange-200 to-blue-200 relative overflow-hidden rounded-t-lg">
-            {imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 mx-auto mb-2 rounded-full bg-white/50 flex items-center justify-center">
-                    <DynamicIcon icon={theme?.productFallbackIcon} fallback="Sparkles" className="w-12 h-12 text-primary/40" size={48} />
-                  </div>
-                  <span className="text-xs text-foreground/40">Ìyi kë̀ sú̱ne</span>
-                </div>
-              </div>
-            )}
-
-            {/* Badge */}
-            {badge && (
-              <div className="absolute top-3 right-3">
-                {badge === 'Sale' && <span className="badge-sale">Ìyi bua'ë</span>}
-                {badge === 'New' && <span className="badge-new">New</span>}
-                {badge === 'Bestseller' && <span className="badge-bestseller">Bua'ë</span>}
-              </div>
-            )}
-
-            {/* Wishlist Button */}
-            <button
-              className="absolute top-3 left-3 w-9 h-9 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-muted"
-              onClick={(e) => {
-                e.preventDefault();
-                // Add to wishlist logic here
-              }}
-            >
-              <Heart className="w-4 h-4 text-foreground hover:text-primary" />
-            </button>
+    <article className="group relative flex h-full flex-col rounded-[2.25rem_0.5rem_2.25rem_0.5rem] has-[a:focus-visible]:outline has-[a:focus-visible]:outline-[3px] has-[a:focus-visible]:outline-offset-4 has-[a:focus-visible]:outline-[color:var(--focus)]">
+      <div className={`leaf relative bg-surface-quiet ${feature ? 'aspect-[4/5]' : 'aspect-[4/5]'}`}>
+        <StoreImage src={item.imageUrl} alt="" sizes={sizes} maxWidth={feature ? 1280 : 960} fallback={<Placeholder />} />
+        {item.kind === 'service' && (
+          <span className="absolute left-3 top-3 rounded-full bg-surface-deep/85 px-2.5 py-1 text-xs font-semibold text-ink-on-deep backdrop-blur-sm">
+            {t('product.service')}
+          </span>
+        )}
+      </div>
+      <div className="flex flex-1 flex-col gap-2 pt-3">
+        {category && <p className="text-sm font-medium text-ink-soft">{category.name}</p>}
+        <Heading className={`${feature ? 'text-2xl lg:text-3xl' : 'text-lg'} text-heading`}>
+          <Link href={`/products/${item.id}`} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none group-hover:underline">
+            {item.name}
+          </Link>
+        </Heading>
+        {feature && item.description && <p className="line-clamp-3 text-ink-soft">{item.description}</p>}
+        <div className="mt-auto flex flex-col gap-2 pt-1">
+          <Price item={item} />
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <Availability item={item} />
           </div>
+        </div>
+        <div className="relative z-10 pt-1">
+          <AddToCart item={item} variant="compact" />
+        </div>
+      </div>
+    </article>
+  );
+}
 
-          {/* Product Info */}
-          <div className="p-4">
-            {category && (
-              <p className="text-muted-foreground text-xs uppercase tracking-wide mb-1">
-                {category}
-              </p>
-            )}
-            <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors line-clamp-2">
-              {name}
-            </h3>
-
-            {/* Price and Add to Cart */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-baseline gap-2">
-                {originalPrice && (
-                  <span className="text-muted-foreground line-through text-sm">
-                    ${originalPrice.toFixed(2)}
-                  </span>
-                )}
-                <span className="text-primary font-bold text-xl">
-                  ${price.toFixed(2)}
-                </span>
-              </div>
-              <button
-                className={`p-2.5 rounded-md transition-all shadow-orange ${
-                  isAdding
-                    ? 'bg-green-500 text-white'
-                    : 'bg-primary hover:bg-accent/90 text-white'
-                }`}
-                onClick={handleAddToCart}
-              >
-                {isAdding ? (
-                  <Check className="w-4 h-4" />
-                ) : (
-                  <ShoppingCart className="w-4 h-4" />
-                )}
-              </button>
-            </div>
-          </div>
-        </a>
-      </Link>
+export function ProductCardSkeleton({ feature = false }: { feature?: boolean }) {
+  return (
+    <div aria-hidden="true" className="flex flex-col gap-3">
+      <div className={`leaf skeleton ${feature ? 'aspect-[4/5] lg:aspect-[5/6]' : 'aspect-[4/5]'}`} />
+      <div className="skeleton h-4 w-1/3" />
+      <div className="skeleton h-6 w-3/4" />
+      <div className="skeleton h-7 w-24 rounded-full" />
     </div>
   );
 }

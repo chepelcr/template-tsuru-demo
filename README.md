@@ -1,73 +1,65 @@
-# Tsuru Demo Template
+# Tsuru Ù — storefront template
 
-A modern, general marketplace template with an orange and blue color scheme.
+Tsuru's own demo store, written in Bribri: understory greens, leaf masks and
+light filtering through the canopy. Serves cooperatives, cacao and coffee
+producers, community markets and rural businesses that sell over WhatsApp.
 
-## Theme Specifications
+- Design plan, palette, type and the signature effect: [`DESIGN.md`](DESIGN.md)
+- Bribri vocabulary, sources and review status: [`BRIBRI.md`](BRIBRI.md)
 
-- **Primary Color**: Orange `#f97316`
-- **Secondary Color**: Blue `#1e40af`
-- **Accent Color**: Amber `#fbbf24`
-- **Font**: Inter (modern, clean)
-- **Style**: Modern e-commerce, card-heavy layout
-- **Aesthetic**: Minimal, accessible, high-conversion
+## How it works
 
-## Features
+A React 18 + Vite + Tailwind app. Everything the store shows is data:
 
-- Modern, responsive design
-- Product catalog with filtering
-- Product detail pages
-- Shopping cart functionality (UI ready)
-- Orange/Blue gradient hero sections
-- Clean card-based layouts
-- Optimized for conversion
+| What | Where it comes from |
+|---|---|
+| store name, logo, colours, display font | the organization's branding (template defaults in `src/theme/`) |
+| hero, story, benefits, contact copy | the shared CMS contract (`home`, `about`, `products`, `contact` pages) |
+| products, services, categories | the template's demo catalog, or the organization's own catalog |
+| hours, WhatsApp, email, address, social | the organization's contact settings |
+
+`/config.json` decides which: `{ "mode": "demo", "templateId": … }` reads the
+template's rows (this repository's example site); a provisioned store gets
+`{ "mode": "live", "orgId": … }` and reads its organization.
+
+The shared logic lives in `src/core/`, **vendored** from the monorepo's
+`templates/_core` — do not edit it here (see its README). Template code is the
+design: `src/components`, `src/pages`, `src/theme`, `src/scenes`, `src/i18n`.
+
+## Pages
+
+`/` home · `/products` catalog (products and services; `?type=`, `?category=`,
+`?sale=1`, `?q=`, `?sort=`) · `/products/:id` detail · `/about` · `/contact` ·
+404. Old URLs (`/deals`, `/services`, `/programs`, `/category/:slug`…) redirect
+to their place in the catalog. The basket is a sheet; checkout is a dialog
+(live stores create the order in the POS and open WhatsApp; the demo store
+shows the message it would send).
+
+## Languages
+
+Bribri first (`src/i18n/bzd.ts`, attested words only), then Spanish, then
+English (`?lang=es`, `?lang=en`). Bribri labels carry their Spanish meaning.
+
+## Effects
+
+The canopy's light is a ~3 KB WebGL shader (`src/scenes/light.ts`), loaded
+only in view on capable devices with motion allowed; otherwise a static
+gradient shows. `?motion=reduce` and `?webgl=0` force the still version.
 
 ## Development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+pnpm install
+pnpm dev          # http://localhost:5173
+pnpm build        # tsc + vite build → dist/
 ```
 
-## Build Output
-
-Builds to: `dist/` (repo-local, per `vite.config.ts`).
+Against a local management-be (no shared database):
+`TSURU_DEV_API=http://localhost:5000 VITE_PUBLIC_API_URL=http://localhost:5173 pnpm dev`.
 
 ## Deployment
 
-GitHub Pages, from `.github/workflows/deploy.yml` on push to `main`:
-- **Live URL**: https://tsuru-demo.examples.tsuru.jcampos.dev
-- The S3 + CloudFront path this section used to describe is retired, along with
-  the `tsuru-demo` name (renamed `tsuru-demo` on 2026-07-03).
-
-## Architecture
-
-Built with:
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- Wouter (routing)
-- Lucide React (icons)
-
-## Pages
-
-- `/` - Home page with hero, features, and featured products
-- `/products` - Product catalog with filters and search
-- `/products/:id` - Product detail page
-
-## Customization
-
-Theme colors are defined in:
-- `tailwind.config.js` - Tailwind color scales
-- `src/index.css` - CSS variables and utilities
-
-To customize the theme, update the color values in these files.
+`.github/workflows/deploy.yml`: `develop` → GitHub Pages
+(`tsuru-demo.examples.tsuru.jcampos.dev`, staging); `main` → production
+example hosting. Each deploy notifies the provisioner so organization stores
+using this template are refreshed.
