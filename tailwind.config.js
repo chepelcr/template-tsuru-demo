@@ -1,98 +1,39 @@
 /** @type {import('tailwindcss').Config} */
+// Colours and fonts come from src/theme/tokens.css (semantic layer), so the
+// store's branding and the template palette stay in one place.
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Tsuru Demo Theme - Orange & Blue
-        // Primary: Orange #f97316, Secondary: Blue #1e40af, Accent: Amber #fbbf24
-
-        // Semantic color tokens referenced from CSS variables
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-
-        // Brand color scales for explicit control
-        orange: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',  // Primary
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12',
-        },
-        blue: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',  // Secondary
-          900: '#1e3a8a',
-        },
-        amber: {
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',  // Accent
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
-        },
-      },
-      borderRadius: {
-        lg: 'calc(var(--radius) + 0.5rem)',
-        md: 'calc(var(--radius) + 0.25rem)',
-        sm: 'calc(var(--radius) - 0.125rem)',
+        surface: { DEFAULT: 'var(--surface)', quiet: 'var(--surface-quiet)', raised: 'var(--surface-raised)', deep: 'var(--surface-deep)', 'deep-raised': 'var(--surface-deep-raised)' },
+        ink: { DEFAULT: 'var(--ink)', soft: 'var(--ink-soft)', 'on-deep': 'var(--ink-on-deep)', 'on-deep-soft': 'var(--ink-on-deep-soft)' },
+        heading: 'var(--heading)',
+        rule: { DEFAULT: 'var(--rule)', deep: 'var(--rule-on-deep)' },
+        accent: { DEFAULT: 'var(--accent)', ink: 'var(--accent-ink)', text: 'var(--accent-text)', 2: 'var(--accent-2)', '2-ink': 'var(--accent-2-ink)' },
+        offer: 'var(--offer)',
+        danger: 'var(--danger)',
+        success: 'var(--success)',
+        focus: { DEFAULT: 'var(--focus)', deep: 'var(--focus-on-deep)' },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        display: 'var(--font-display)',
+        text: 'var(--font-text)',
       },
+      borderRadius: {
+        leaf: 'var(--radius-leaf)',
+        'leaf-sm': 'var(--radius-leaf-sm)',
+        soft: 'var(--radius-soft)',
+      },
+      boxShadow: {
+        soft: 'var(--shadow-soft)',
+        lift: 'var(--shadow-lift)',
+      },
+      maxWidth: { page: 'var(--max)' },
+      minHeight: { tap: 'var(--tap)' },
+      minWidth: { tap: 'var(--tap)' },
+      transitionTimingFunction: { out: 'var(--ease-out)', in: 'var(--ease-in)' },
     },
   },
   plugins: [],
-}
+};

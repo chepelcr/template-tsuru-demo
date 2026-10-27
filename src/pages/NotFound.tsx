@@ -1,90 +1,22 @@
-import { Link } from "wouter";
-import { Home, Search, ArrowRight } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import { Link } from 'wouter';
+import { usePageMeta } from '@/core';
+import { useI18n } from '@/i18n';
+import { Label } from '@/components/Label';
 
 export default function NotFound() {
+  const { t } = useI18n();
+  usePageMeta(t('notFound.title'));
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      {/* 404 Content */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center max-w-2xl">
-          {/* Large 404 */}
-          <div className="mb-8">
-            <h1 className="text-9xl md:text-[12rem] font-bold text-gradient leading-none">
-              404
-            </h1>
-          </div>
-
-          {/* Error Message */}
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kë̀ kú̱ne!
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
-            Ì be' yulè kë̀ tso' í̱e̱. Bö̀ ù ki̱!
-          </p>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="/">
-              <a className="btn-primary px-8 py-3 rounded-md font-semibold text-lg inline-flex items-center justify-center gap-2 shadow-orange">
-                <Home className="w-5 h-5" />
-                Ù ki̱ bö̀
-              </a>
-            </Link>
-            <Link href="/products">
-              <a className="btn-secondary px-8 py-3 rounded-md font-semibold text-lg inline-flex items-center justify-center gap-2">
-                <Search className="w-5 h-5" />
-                Ìyi sú̱
-              </a>
-            </Link>
-          </div>
-
-          {/* Helpful Links */}
-          <div className="card-modern p-6 max-w-md mx-auto">
-            <h3 className="font-semibold text-lg mb-4">Ñá̱la̱ kimà</h3>
-            <div className="space-y-3 text-left">
-              <Link href="/products">
-                <a className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group">
-                  <span className="text-muted-foreground group-hover:text-primary">
-                    Ìyi ulìtane sú̱
-                  </span>
-                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Link>
-              <a
-                href="#"
-                className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group"
-              >
-                <span className="text-muted-foreground group-hover:text-primary">
-                  Sa' ta̱ ushtè
-                </span>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#"
-                className="flex items-center justify-between p-3 hover:bg-muted rounded-md transition-colors group"
-              >
-                <span className="text-muted-foreground group-hover:text-primary">
-                  Kimà ù
-                </span>
-                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-          </div>
-
-          {/* Decorative Element */}
-          <div className="mt-12 flex justify-center gap-2">
-            <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-            <div className="w-3 h-3 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-3 h-3 bg-secondary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          </div>
-        </div>
-      </div>
-
-      <Footer />
+    <div className="page flex flex-col items-start gap-5 py-24">
+      <svg aria-hidden="true" viewBox="0 0 120 120" className="h-24 w-24 -rotate-12 text-heading">
+        <path d="M14 106C30 58 66 22 106 14C98 62 66 98 14 106Z" stroke="currentColor" strokeWidth="2.5" style={{ fill: 'var(--surface-quiet)' }} />
+        <path d="M22 98C46 74 72 48 98 22" stroke="currentColor" strokeWidth="2.5" fill="none" />
+      </svg>
+      <h1 className="text-5xl text-heading">{t('notFound.title')}</h1>
+      <p className="max-w-xl text-lg text-ink-soft">{t('notFound.body')}</p>
+      <Link href="/" className="btn btn-moss">
+        <Label k="nav.home" /> · {t('notFound.cta')}
+      </Link>
     </div>
   );
 }
