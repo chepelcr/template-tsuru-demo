@@ -23,6 +23,7 @@ export * from './queries';
 export * from './locations';
 export * from './cart-store';
 export * from './routing';
+export * from './views';
 export * from './i18n';
 export * from './i18n-base';
 export * from './motion';

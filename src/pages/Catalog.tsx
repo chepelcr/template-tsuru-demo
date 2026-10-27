@@ -1,17 +1,10 @@
 import { Search, SlidersHorizontal, X } from 'lucide-react';
-import { useEffect, useId, useState } from 'react';
+import { useId, useState } from 'react';
 import {
-  categoriesWithItems,
-  facetsFor,
-  filterItems,
-  findCategory,
-  hasActiveFilters,
   productsContent,
   showsKindFilter,
   showsOfferFilter,
-  toFilters,
-  useCatalog,
-  useCatalogParams,
+  useCatalogView,
   useCmsPage,
   usePageMeta,
   type CatalogCategory,
@@ -155,33 +148,10 @@ export default function Catalog() {
   const content = productsContent(cms.page);
   usePageMeta(cms.page?.title ?? t('catalog.title'), cms.page?.metaDescription);
 
-  const catalog = useCatalog();
-  const [params, setParams] = useCatalogParams();
-  const [query, setQuery] = useState(params.q);
+  const { catalog, params, setParams, query, setQuery, facets, categories, results, active, grouped, selected, uncategorized, categoryOf, clearAll } =
+    useCatalogView();
   const [filtersOpen, setFiltersOpen] = useState(false);
   const resultsId = useId();
-
-  // Typing updates the URL after a pause; back/forward updates the box.
-  useEffect(() => setQuery(params.q), [params.q]);
-  useEffect(() => {
-    if (query.trim() === params.q) return;
-    const id = window.setTimeout(() => setParams({ q: query }, { replace: true }), 250);
-    return () => window.clearTimeout(id);
-  }, [query, params.q, setParams]);
-
-  const facets = facetsFor(catalog.items);
-  const categories = categoriesWithItems(catalog.categories, catalog.items);
-  const results = filterItems(catalog.items, toFilters(params), catalog.categories);
-  const active = hasActiveFilters(params);
-  const grouped = !active && params.sort === 'featured';
-  const categoryOf = (id: string | null) => catalog.categories.find((c) => c.id === id);
-  const selected = findCategory(catalog.categories, params.category);
-  const uncategorized = results.filter((i) => !i.categoryId || !categories.some((c) => c.id === i.categoryId));
-
-  const clearAll = () => {
-    setQuery('');
-    setParams({ kind: null, category: null, sale: false, q: '' });
-  };
 
   const controls = (prefix: string) => (
     <FilterControls params={params} setParams={setParams} facets={facets} categories={categories} query={query} onQuery={setQuery} idPrefix={prefix} />

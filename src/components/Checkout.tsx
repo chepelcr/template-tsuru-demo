@@ -1,37 +1,17 @@
 import { CheckCircle2, MessageCircle } from 'lucide-react';
-import { useEffect, useId, useState, type FormEvent, type ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import {
-  composeOrderMessage,
-  EMPTY_CHECKOUT,
-  firstInvalidField,
+  checkoutFieldId as fieldId,
   formatPrice,
-  needsAddress,
-  orderMessageLabels,
-  orderPhone,
-  placeName,
-  toOrderInput,
-  useBarrios,
-  useCantones,
-  useCart,
-  useCartTotals,
-  useDeliveryMethods,
-  useDistritos,
-  useProvincias,
-  useStore,
-  validateCheckout,
-  whatsappHref,
-  type CheckoutErrors,
+  useCheckout,
   type CheckoutField,
-  type CheckoutValues,
   type PlaceOption,
 } from '@/core';
 import { useI18n } from '@/i18n';
 import { Label } from './Label';
 import { Sheet } from './Sheet';
 
-type Phase = 'form' | 'submitting' | 'demo' | 'success';
 
-const fieldId = (field: CheckoutField) => `checkout-${field}`;
 
 function Field({ field, label, hint, error, children }: { field: CheckoutField; label: string; hint?: string; error?: string; children: ReactNode }) {
   return (
@@ -103,114 +83,30 @@ function PlaceSelect({
 
 export function Checkout() {
   const { t } = useI18n();
-  const { isDemo, client, contact, organization } = useStore();
-  const open = useCart((s) => s.checkoutOpen);
-  const closeCheckout = useCart((s) => s.closeCheckout);
-  const openCart = useCart((s) => s.open);
-  const clear = useCart((s) => s.clear);
-  const lines = useCart((s) => s.lines);
-  const totals = useCartTotals();
-  const methods = useDeliveryMethods();
-
-  const [values, setValues] = useState<CheckoutValues>(EMPTY_CHECKOUT);
-  const [errors, setErrors] = useState<CheckoutErrors>({});
-  const [showSummary, setShowSummary] = useState(false);
-  const [phase, setPhase] = useState<Phase>('form');
-  const [message, setMessage] = useState('');
-  const [tracking, setTracking] = useState<string | null>(null);
-  const [waUrl, setWaUrl] = useState<string | null>(null);
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const methodLegend = useId();
-
-  const delivery = needsAddress(values.method);
-  const provincias = useProvincias();
-  const cantones = useCantones(delivery ? values.stateId : null);
-  const distritos = useDistritos(delivery ? values.stateId : null, values.countyId);
-  const barrios = useBarrios(delivery ? values.stateId : null, values.countyId, values.districtId);
-
-  useEffect(() => {
-    if (!open) return;
-    setPhase('form');
-    setSubmitError(null);
-  }, [open]);
-
-  const set = <K extends keyof CheckoutValues>(key: K, value: CheckoutValues[K]) => {
-    setValues((v) => {
-      const next = { ...v, [key]: value };
-      // A new provincia/cantón/distrito invalidates the levels below it.
-      if (key === 'stateId') Object.assign(next, { countyId: null, districtId: null, neighborhoodId: null });
-      if (key === 'countyId') Object.assign(next, { districtId: null, neighborhoodId: null });
-      if (key === 'districtId') Object.assign(next, { neighborhoodId: null });
-      return next;
-    });
-    if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
-  };
-
-  const errorText = (field: CheckoutField) => (errors[field] ? t(`checkout.error.${errors[field]}`) : undefined);
-
-  const compose = (trackingNumber: string | null) =>
-    composeOrderMessage({
-      storeName: organization?.name ?? '',
-      lines,
-      total: totals.total,
-      values,
-      places: [
-        placeName(provincias.data, values.stateId),
-        placeName(cantones.data, values.countyId),
-        placeName(distritos.data, values.districtId),
-        placeName(barrios.data, values.neighborhoodId),
-      ],
-      trackingNumber,
-      labels: orderMessageLabels(t),
-      formatPrice: (n) => formatPrice(n),
-    });
-
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
-    setSubmitError(null);
-    const found = validateCheckout(values);
-    setErrors(found);
-    const first = firstInvalidField(found);
-    if (first) {
-      setShowSummary(true);
-      document.getElementById(fieldId(first))?.focus();
-      return;
-    }
-    setShowSummary(false);
-
-    if (isDemo || !client) {
-      setMessage(compose(null));
-      setPhase('demo');
-      return;
-    }
-
-    const phone = orderPhone(contact);
-    // Opened inside the click so popup blockers allow it after the request.
-    const waWindow = phone ? window.open('', '_blank') : null;
-    setPhase('submitting');
-    try {
-      const order = await client.createOrder(toOrderInput(values, lines));
-      const text = compose(order.trackingNumber);
-      setTracking(order.trackingNumber);
-      if (phone) {
-        const url = whatsappHref(phone, text);
-        setWaUrl(url);
-        if (waWindow) waWindow.location.href = url;
-      }
-      clear();
-      setValues(EMPTY_CHECKOUT);
-      setPhase('success');
-    } catch {
-      waWindow?.close();
-      setSubmitError(t('checkout.error.submit'));
-      setPhase('form');
-    }
-  };
-
-  const backToCart = () => {
-    closeCheckout();
-    openCart();
-  };
+  const {
+    open,
+    close: closeCheckout,
+    backToCart,
+    lines,
+    totals,
+    methods,
+    values,
+    set,
+    errors,
+    errorText,
+    showSummary,
+    phase,
+    setPhase,
+    message,
+    tracking,
+    waUrl,
+    submitError,
+    submit,
+    delivery,
+    places: { provincias, cantones, distritos, barrios },
+    placesFailed,
+  } = useCheckout(t);
 
   const title =
     phase === 'success' ? <Label k="checkout.success.title" gloss /> : phase === 'demo' ? t('checkout.demo.title') : t('checkout.title');
@@ -326,7 +222,7 @@ export function Checkout() {
               <PlaceSelect field="countyId" label={t('checkout.county')} options={cantones.data} value={values.countyId} disabled={values.stateId === null} loading={cantones.isLoading && values.stateId !== null} error={errorText('countyId')} onChange={(v) => set('countyId', v)} />
               <PlaceSelect field="districtId" label={t('checkout.district')} options={distritos.data} value={values.districtId} disabled={values.countyId === null} loading={distritos.isLoading && values.countyId !== null} error={errorText('districtId')} onChange={(v) => set('districtId', v)} />
               <PlaceSelect field="neighborhoodId" label={t('checkout.neighborhood')} options={barrios.data} value={values.neighborhoodId} disabled={values.districtId === null} loading={barrios.isLoading && values.districtId !== null} onChange={(v) => set('neighborhoodId', v)} />
-              {(provincias.isError || cantones.isError || distritos.isError) && (
+              {placesFailed && (
                 <p role="alert" className="text-sm font-medium text-danger sm:col-span-2">
                   {t('checkout.places.error')}
                 </p>

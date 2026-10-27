@@ -1,7 +1,6 @@
 import { ArrowLeft } from 'lucide-react';
-import { useState } from 'react';
 import { Link, useParams } from 'wouter';
-import { catalogHref, maxQuantity, paragraphs, relatedItems, useCatalogItem, usePageMeta } from '@/core';
+import { catalogHref, paragraphs, usePageMeta, useProductView } from '@/core';
 import { useI18n } from '@/i18n';
 import { AddToCart } from '@/components/AddToCart';
 import { Availability } from '@/components/Availability';
@@ -14,8 +13,7 @@ import { StoreImage } from '@/components/StoreImage';
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useI18n();
-  const { item, catalog } = useCatalogItem(id);
-  const [quantity, setQuantity] = useState(1);
+  const { item, catalog, category, related, max, quantity, setQuantity } = useProductView(id);
   usePageMeta(item?.name, item?.description);
 
   if (catalog.isLoading) {
@@ -44,9 +42,6 @@ export default function ProductPage() {
     );
   }
 
-  const category = catalog.categories.find((c) => c.id === item.categoryId);
-  const related = relatedItems(catalog.items, item, 4);
-  const max = maxQuantity(item);
   const text = paragraphs(item.description);
 
   return (
