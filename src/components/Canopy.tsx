@@ -44,8 +44,8 @@ function Layer({ leaves, fill, vein, depth }: { leaves: LeafSpec[]; fill: string
     >
       {leaves.map(([x, y, rotate, scale], i) => (
         <g key={i} transform={`translate(${x} ${y}) rotate(${rotate}) scale(${scale})`}>
-          <path d={LEAF} fill={fill} />
-          <path d="M6 0H120" stroke={vein} strokeWidth="1.4" fill="none" />
+          <path d={LEAF} style={{ fill }} />
+          <path d="M6 0H120" strokeWidth="1.4" fill="none" style={{ stroke: vein }} />
         </g>
       ))}
     </svg>

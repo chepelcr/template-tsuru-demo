@@ -30,8 +30,8 @@ function StoreMark() {
         <img src={logo} alt="" className="h-9 w-9 rounded-full object-cover" />
       ) : (
         <svg aria-hidden="true" viewBox="0 0 64 64" className="h-9 w-9">
-          <path d="M32 6c13 9 20 20 20 31 0 10-9 19-20 19s-20-9-20-19C12 26 19 15 32 6Z" fill="var(--sb-moss)" />
-          <path d="M32 13v40M32 28l-8-7M32 37l9-8M32 46l-7-5" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" fill="none" />
+          <path d="M32 6c13 9 20 20 20 31 0 10-9 19-20 19s-20-9-20-19C12 26 19 15 32 6Z" style={{ fill: 'var(--sb-moss)' }} />
+          <path d="M32 13v40M32 28l-8-7M32 37l9-8M32 46l-7-5" strokeWidth="3" strokeLinecap="round" fill="none" style={{ stroke: 'var(--accent)' }} />
         </svg>
       )}
       <span className="font-display text-xl tracking-tight sm:text-2xl">{organization.name}</span>

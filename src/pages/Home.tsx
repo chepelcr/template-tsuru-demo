@@ -225,7 +225,7 @@ export default function Home() {
             </div>
             <svg aria-hidden="true" viewBox="0 0 200 200" className="absolute -bottom-10 -right-6 h-56 w-56 text-[color:var(--sb-canopy)] opacity-40">
               <path d="M10 190C40 110 110 40 190 10C170 90 120 160 10 190Z" fill="currentColor" />
-              <path d="M24 178C70 130 120 80 176 24" stroke="var(--sb-fern)" strokeWidth="2" fill="none" />
+              <path d="M24 178C70 130 120 80 176 24" strokeWidth="2" fill="none" style={{ stroke: 'var(--sb-fern)' }} />
             </svg>
           </div>
         </section>
