@@ -74,3 +74,23 @@
   --canopy-light-gold-soft: rgb(232 184 58 / 0.14);
   --canopy-light-fern: rgb(127 160 104 / 0.22);
 }
+
+/* Nightfall keeps the canopy art and store category pigments intact. */
+:root[data-color-scheme='dark'] {
+  --surface: #111E17;
+  --surface-quiet: #1B2C21;
+  --surface-raised: #213427;
+  --surface-deep: #0B1710;
+  --surface-deep-raised: #173525;
+  --ink: #E8EEE2;
+  --ink-soft: #BAC8B5;
+  --heading: #C4D7A3;
+  --rule: rgb(196 215 163 / 0.23);
+  --offer: #E79D84;
+  --offer-ink: #17241B;
+  --danger: #FFAA98;
+  --success: #9ACB95;
+  --focus: #C4D7A3;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.25), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 24px 48px -20px rgb(0 0 0 / 0.7);
+}

@@ -55,7 +55,7 @@ export function ProductCard({ item, category, sizes = '(min-width: 1024px) 25vw,
       <div className={`leaf relative bg-surface-quiet ${feature ? 'aspect-[4/5]' : 'aspect-[4/5]'}`}>
         <StoreImage src={item.imageUrl} alt="" sizes={sizes} maxWidth={feature ? 1280 : 960} fallback={<Placeholder />} />
         {item.kind === 'service' && (
-          <span className="absolute left-3 top-3 rounded-full bg-surface-deep/85 px-2.5 py-1 text-xs font-semibold text-ink-on-deep backdrop-blur-sm">
+          <span className="absolute left-3 top-3 rounded-full bg-surface-deep px-2.5 py-1 text-xs font-semibold text-ink-on-deep backdrop-blur-sm">
             {t('product.service')}
           </span>
         )}

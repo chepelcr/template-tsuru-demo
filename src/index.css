@@ -105,12 +105,12 @@
   }
 
   .btn-moss {
-    background: var(--heading);
+    background: var(--sb-moss);
     color: var(--sb-clearing);
   }
 
   .btn-moss:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--heading) 88%, black);
+    background: color-mix(in srgb, var(--sb-moss) 88%, black);
   }
 
   .btn-quiet {
@@ -266,6 +266,10 @@
   animation: fade-in var(--dur-enter) ease;
 }
 
+.nav-menu[data-state='open'] {
+  animation: fade-in var(--dur-enter) var(--ease-out);
+}
+
 .sheet[data-state='open'] {
   animation: sheet-in-up var(--dur-enter) var(--ease-out);
 }
@@ -286,10 +290,10 @@
   will-change: transform;
 }
 
-::view-transition-old(root) {
+::view-transition-old(storefront-content) {
   animation-duration: var(--dur-exit);
 }
 
-::view-transition-new(root) {
+::view-transition-new(storefront-content) {
   animation-duration: var(--dur-enter);
 }
