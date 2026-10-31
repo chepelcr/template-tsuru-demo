@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Menu, ShoppingBasket, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'wouter';
-import { useCart, useCartTotals, useStore } from '@/core';
+import { useCart, useCartTotals, useStore, useStoreName } from '@/core';
 import { useI18n } from '@/i18n';
 import { BASKET_EVENT } from './AddToCart';
 import { ThemeToggle } from './ThemeToggle';
@@ -23,10 +23,11 @@ export function useIsActive() {
 
 function StoreMark() {
   const { organization, theme } = useStore();
+  const name = useStoreName();
   const logo = theme?.logoUrl ?? organization?.logoUrl ?? null;
-  if (!organization) return <span aria-hidden="true" className="skeleton-deep block h-7 w-24 max-w-full" />;
+  if (!name) return <span aria-hidden="true" className="skeleton-deep block h-7 w-24 max-w-full" />;
   return (
-    <span className="flex min-w-0 items-center gap-2">
+    <span className="flex w-full min-w-0 items-center gap-2">
       {logo ? (
         <img src={logo} alt="" className="h-8 w-8 shrink-0 rounded-full object-cover" />
       ) : (
@@ -35,13 +36,14 @@ function StoreMark() {
           <path d="M32 13v40M32 28l-8-7M32 37l9-8M32 46l-7-5" strokeWidth="3" strokeLinecap="round" fill="none" style={{ stroke: 'var(--accent)' }} />
         </svg>
       )}
-      <span className="truncate font-display text-lg tracking-tight sm:text-xl">{organization.name}</span>
+      <span className="font-display tracking-tight sm:text-xl min-w-0 flex-1 break-words [overflow-wrap:anywhere] text-base leading-tight">{name}</span>
     </span>
   );
 }
 
 export function Header() {
   const { t, plural } = useI18n();
+  const name = useStoreName();
   const { count } = useCartTotals();
   const openCart = useCart((s) => s.open);
   const isActive = useIsActive();
@@ -61,8 +63,8 @@ export function Header() {
   return (
     <header ref={headerRef} className="on-deep relative z-30 bg-surface-deep text-ink-on-deep">
       <DemoNotice />
-      <div className="page flex h-14 items-center gap-1.5 sm:h-16 sm:gap-2">
-        <Link href="/" className="-ml-1 min-w-0 flex-1 rounded-full px-1 py-1 lg:flex-initial">
+      <div className="page flex min-h-14 items-center gap-1.5 sm:min-h-16 sm:gap-2 py-1">
+        <Link href="/" title={name || undefined} aria-label={name || undefined} className="flex min-h-tap items-center -ml-1 min-w-0 flex-1 rounded-full px-1 lg:flex-initial lg:max-w-[16rem]">
           <StoreMark />
         </Link>
 
